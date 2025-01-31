@@ -88,102 +88,138 @@ Next task is to deploy the File Gateway appliance as an Amazon Elastic Compute C
 2. At the top-right of the console, verify that the current Region is** N. Virginia**.
 
 3. Choose Create gateway then begin configuring the Step 1: Set up gateway settings:
-    **Gateway name**: File Gateway
-    **Gateway time zone**: Choose GMT -5:00 Eastern Time (US & Canada), Bogota, Lima
-    **Gateway type**: Amazon S3 File Gateway
-    **Host platform**: choose Amazon EC2. Choose Customize your settings. Then choose the **Launch instance** button.
-    A new tab opens to the EC2 instance launch wizard. This link automatically selects the correct Amazon Machine Image (AMI) that must be used for the File Gateway appliance.
+   - **Gateway name**: File Gateway
+   - **Gateway time zone**: Choose GMT -5:00 Eastern Time (US & Canada), Bogota, Lima
+   - **Gateway type**: Amazon S3 File Gateway
+   -  **Host platform**: choose Amazon EC2. Choose Customize your settings. Then choose the **Launch instance** button.
+   - A new tab opens to the EC2 instance launch wizard. This link automatically selects the correct Amazon Machine Image (AMI) that must be used for the File Gateway appliance.
 
-4. In the Launch an instance screen, begin configuring the gateway as described:
-    **Name:** File Gateway Appliance
-    **AMI from catalog**: Accept the default aws-storage-gateway AMI.
-    **Instance type**: Select the **t2.xlarge** instance type
+5. In the Launch an instance screen, begin configuring the gateway as described:
+    - **Name:** File Gateway Appliance
+    - **AMI from catalog**: Accept the default aws-storage-gateway AMI.
+    - **Instance type**: Select the **t2.xlarge** instance type
     
-5. Configure the network and security group settings for the gateway.
-    Next to Network settings, choose Edit, then configure: 
-      **VPC**: On-Prem-VPC
-      **Subnet**: On-Prem-Subnet
-      **Auto-assign public IP**: Enable
-      Under Firewall (security groups), choose  Select an **existing security group**.
-      For Common security groups: 
-         Select the security group with FileGatewayAccess in the name
-         Note: This security group is configured to allow traffic through ports 80 (HTTP), 443 (HTTPS), 53 (DNS), 123 (NTP), and 2049 (NFS). These ports enable the activation of the File Gateway appliance. They also enable connectivity from the Linux server to the NFS share that you will create on the File Gateway.
+6. Configure the network and security group settings for the gateway.
+    - Next to Network settings, choose Edit, then configure: 
+       - **VPC**: On-Prem-VPC
+       - **Subnet**: On-Prem-Subnet
+       - **Auto-assign public IP**: Enable
+    - Under Firewall (security groups), choose  Select an **existing security group**.
+    - For Common security groups: 
+    - Select the security group with FileGatewayAccess in the name
+        Note: This security group is configured to allow traffic through ports 80 (HTTP), 443 (HTTPS), 53 (DNS), 123 (NTP), and 2049 (NFS). These ports enable the activation of the File Gateway appliance. They also enable connectivity from the Linux server to the NFS share that you will create on the File Gateway.
          Also select the security group with OnPremSshAccess in the name Note: This security group is configured to allow Secure Shell (SSH) connections on port 22.
          Verify that both security group now appear as selected (details on each will appear in boxes in the console). 
          Tip: You may need to choose Show all selected to see them both.
 
-6. Configure the storage settings for the gateway.
-    In the Configure storage panel, notice there is already an entry to create one 80GiB root volume.
-    Choose **Add new volume** 
-    Set the size of the EBS volume to 150GiB
+7. Configure the storage settings for the gateway.
+    - In the Configure storage panel, notice there is already an entry to create one 80GiB root volume.
+    - Choose **Add new volume** 
+    - Set the size of the EBS volume to 150GiB
 
-7. Finish creating the gateway.
-    In the Summary panel on the right, keep the number of instances set to 1, and choose **Launch instance**
-    A Success message displays.
-    Choose **View all instances**
-    Your File Gateway Appliance instance will take a few minutes to initialize.
+8. Finish creating the gateway.
+    - In the Summary panel on the right, keep the number of instances set to 1, and choose **Launch instance**
+    - A Success message displays.
+    - Choose **View all instances**
+    - Your File Gateway Appliance instance will take a few minutes to initialize.
 
-8. Monitor the status of the deployment and wait for **Status Checks** to complete.
-    Tip: Choose the refresh  button to more quickly learn the status of the instance.
+9. Monitor the status of the deployment and wait for **Status Checks** to complete.
+    - Tip: Choose the refresh  button to more quickly learn the status of the instance.
 
-9. Select your File Gateway instance, then in the Details tab below, locate the** Public IPv4 address** and copy it. 
-    You will use this IP address when you complete the File Gateway deployment.
+10. Select your File Gateway instance, then in the Details tab below, locate the** Public IPv4 address** and copy it. 
+    - You will use this IP address when you complete the File Gateway deployment.
 
-10. Return to the **AWS Storage Gateway** tab in your browser. It should still be at the **Set up gateway on Amazon EC2** screen.
+11. Return to the **AWS Storage Gateway** tab in your browser. It should still be at the **Set up gateway on Amazon EC2** screen.
 
-11. Check the box next to I completed all the steps above and launched the EC2 instance, then choose Next
+12. Check the box next to I completed all the steps above and launched the EC2 instance, then choose Next
 
-12. Configure the Step 2: **Connect to AWS settings**:
-     In the Gateway connection options:
-       For IP address, paste in the IPv4 Public IP address that you copied from your File Gateway Appliance instance
-     For the Service endpoint, select Publicly accessible.
-       Choose Next
+13. Configure the Step 2: **Connect to AWS settings**:
+     - In the Gateway connection options:
+        - For IP address, paste in the IPv4 Public IP address that you copied from your File Gateway Appliance instance
+     - For the Service endpoint, select Publicly accessible.
+        - Choose Next
 
-13. In the Step 3: Review and activate settings screen choose **Activate gateway**
+14. In the Step 3: Review and activate settings screen choose **Activate gateway**
 
-14. Configure the Step 4: Configure gateway settings:
-     CloudWatch log group: Deactivate logging
-     CloudWatch alarms: No Alarm
-     A Successfully activated gateway File Gateway Appliance message displays. 
-     In the Configure cache storage panel, you will see that a message the local disks are loading.  
-     Wait for the local disks status to show that it finished processing (approximately 1 minute).
-     Choose **Configure**
+15. Configure the Step 4: Configure gateway settings:
+     - CloudWatch log group: Deactivate logging
+     - CloudWatch alarms: No Alarm
+     - A Successfully activated gateway File Gateway Appliance message displays. 
+     - In the Configure cache storage panel, you will see that a message the local disks are loading.  
+     - Wait for the local disks status to show that it finished processing (approximately 1 minute).
+     - Choose **Configure**
 
-15. Start creating a file share.
-     Wait for File Gateway status to change to Running.
-     From the left side panel, choose File shares.
-     Choose Create file share.
+16. Start creating a file share.
+     - Wait for File Gateway status to change to Running.
+     - From the left side panel, choose File shares.
+     - Choose Create file share.
 
-16. On the Create file share screen, configure these settings:
-     **Gateway**: Select the name of the File Gateway that you just created (which should be File Gateway Appliance)
-    ** File share protoco**l: NFS
-    **Amazon S3 bucket nam**e: Choose the name of the source bucket that you created in the US East (Ohio) us-east-2 Region in Task 1.
-     Choose **Customize configuration**
-     For File share name use share and choose Next.
+17. On the Create file share screen, configure these settings:
+     - **Gateway**: Select the name of the File Gateway that you just created (which should be File Gateway Appliance)
+     - ** File share protoco**l: NFS
+     - **Amazon S3 bucket nam**e: Choose the name of the source bucket that you created in the US East (Ohio) us-east-2 Region in Task 1.
+     - Choose **Customize configuration**
+     - For File share name use share and choose Next.
 
-17. On the Amazon S3 storage settings screen, configure these settings:
-     **Storage class for new objects**: S3 Standard
-     **Object metadata**:
-        Guess MIME type
-        Gateway files acccessible to S3 bucket owner
-     Access your S3 bucket: Use an existing IAM role
-     IAM role: Paste the _FgwIamPolicyARN_, which you can retrieve by following these instructions –
-        Choose the **Details** dropdown menu above these instructions
-        Select **Show**
-        Copy the FgwIamPolicyARN value
-     Choose **Next**
+18. On the Amazon S3 storage settings screen, configure these settings:
+     - **Storage class for new objects**: S3 Standard
+     - **Object metadata**:
+        - Guess MIME type
+        - Gateway files acccessible to S3 bucket owner
+     - Access your S3 bucket: Use an existing IAM role
+     - IAM role: Paste the _FgwIamPolicyARN_, which you can retrieve by following these instructions –
+        - Choose the **Details** dropdown menu above these instructions
+     - Select **Show**
+     - Copy the FgwIamPolicyARN value
+     - Choose **Next**
 
-18. In the File access settings screen, accept the default settings.
-    Note: You might get a warning message that the file share is accessible from anywhere. For this lab, you can safely disregard this warning. In a production environment, you should always create policies that are as restrictive as possible to prevent unwanted or malicious connections to your instances.
+19. In the File access settings screen, accept the default settings.
+    - Note: You might get a warning message that the file share is accessible from anywhere. For this lab, you can safely disregard this warning. In a production environment, you should always create policies that are as restrictive as possible to prevent unwanted or malicious connections to your instances.
 
     Choose **Next**
 
-19. Scroll to the bottom of the Review and create screen, then select **Create** 
-    Monitor the status of the deployment and wait for Status to change to Available, which takes less than a minute.
-    Note: You can choose the refresh  button occasionally to notice more quickly when the status has changed.
+20. Scroll to the bottom of the Review and create screen, then select **Create** 
+    - Monitor the status of the deployment and wait for Status to change to Available, which takes less than a minute.
+    - Note: You can choose the refresh  button occasionally to notice more quickly when the status has changed.
 
-20. Select the file share that you just created by choosing the link.
+21. Select the file share that you just created by choosing the link.
 
-21. At the bottom of the screen, note the command to mount the file share on Linux. You will need it for the next task.
+22. At the bottom of the screen, note the command to mount the file share on Linux. You will need it for the next task.
 
+## Mounting the file share to the Linux instance and migrating the data
+Before we can migrate data to the NFS share that we've created, we must first mount the share. In this task, let's mount the NFS share on a Linux server, then copy data to the share.
 
+Connect to the On-Prem Linux Server instance.
+
+These instructions are specifically for Microsoft Windows users.
+
+1. SSH to the EC2 instance using putty. 
+
+2. login as ec2-user
+
+3. copy any files on your computer onto your EC2 instance by using this Powershell command
+    ```scp -i "path\to\your-key.pem" "path\to\local\file" ec2-user@your-ec2-public-dns:~/destination/path```
+
+4. Create the directory that will be used to synchronize data with your S3 bucket by using the following command:
+   ```sudo mkdir -p /mnt/nfs/s3```
+
+5. Mount the file share on the Linux instance by using the command that you located in the Storage Gateway file shares details screen at the end of the last task.
+   ```sudo mount -t nfs -o nolock,hard <File-Gateway-appliance-private-IP-address>:/share /mnt/nfs/s3```
+
+6. Verify that the share was mounted correctly by entering the following command:
+    ```df -h```
+
+7. Now that you created the mount point, you can copy the data that you want to migrate to Amazon S3 into the share by using this command:
+    ```cp -v /media/data/* /mnt/nfs/s3```
+
+## Verifying that the data is migrated
+
+We have finished configuring the gateway and copying data into the NFS share. Now, you will verify that the configuration works as intended.
+
+1.  Open the S3 console
+2.  Select the bucket that you created in the US East (Ohio) Region.
+   - Verify the files that you uploaded are listed
+3. Return to the Buckets page and select the bucket that you created in the US West (Oregon) Region.
+   - Verify the files were replicated to this bucket
+
+**Congratuations, we have successfully migrated data to Amazon S3 by using AWS Storage Gateway in File Gateway mode! After the data is stored in Amazon S3, we can act on it like native Amazon S3 data. In this exercise, we created a replication policy to copy the data to a secondary Region. You could also perform other operations, such as configuring a lifecycle policy. For example, you could migrate infrequently used data automatically from S3 Standard to Amazon Simple Storage Service Glacier for long-term storage, which can reduce costs. **
