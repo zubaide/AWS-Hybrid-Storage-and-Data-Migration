@@ -16,6 +16,24 @@ The primary S3 bucket is created in the us-east-2 (Ohio) Region. Data from the L
 The secondary S3 bucket is created in the us-west-2 (Oregon) Region. This secondary bucket is the target for the cross-Region replication policy. It can also be called the destination.
 
 ![image](https://github.com/user-attachments/assets/e5df56d7-4ad4-4a1f-9f8a-59eb26f151af)
+This is the network diagram for this project.
 
+## Let's create the Primary and secondary S3 buckets
+Before we configure the File Gateway, we must create the primary S3 bucket (or the source) where we will replicate the data. We will also create the secondary bucket (or the destination) that will be used for cross-Region replication.
 
+![image](https://github.com/user-attachments/assets/27ef28d3-57d9-48af-b26b-4cdf38e243e4)
 
+In the search box to the right of  Services, search for and choose S3 to open the S3 console.
+
+Choose Create bucket then configure these settings:
+        Bucket name: Create a name that you can remember easily. It must be globally unique.
+        Region: US East (Ohio) us-east-2
+        Bucket Versioning: Enable
+         _For cross-Region replication, you must enable versioning for both the source and destination buckets._ 
+
+Choose Create bucket
+
+Repeat the previous steps in this task to create a second bucket with the following configuration:
+        Bucket name: Create a name you can easily remember. It must be globally unique.
+        Region: US West (Oregon) us-west-2
+        Versioning: Enable
