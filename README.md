@@ -21,8 +21,6 @@ This is the network diagram for this project.
 ## Let's create the Primary and secondary S3 buckets
 Before we configure the File Gateway, we must create the primary S3 bucket (or the source) where we will replicate the data. We will also create the secondary bucket (or the destination) that will be used for cross-Region replication.
 
-![image](https://github.com/user-attachments/assets/27ef28d3-57d9-48af-b26b-4cdf38e243e4)
-
 In the search box to the right of  Services, search for and choose S3 to open the S3 console.
 
 Choose Create bucket then configure these settings:
@@ -37,3 +35,6 @@ Repeat the previous steps in this task to create a second bucket with the follow
         Bucket name: Create a name you can easily remember. It must be globally unique.
         Region: US West (Oregon) us-west-2
         Versioning: Enable
+
+![image](https://github.com/user-attachments/assets/27ef28d3-57d9-48af-b26b-4cdf38e243e4)
+Two S3 bucket in different regions
