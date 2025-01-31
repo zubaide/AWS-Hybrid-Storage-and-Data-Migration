@@ -199,19 +199,19 @@ These instructions are specifically for Microsoft Windows users.
 2. login as ec2-user
 
 3. copy any files on your computer onto your EC2 instance by using this Powershell command
-    ```scp -i "path\to\your-key.pem" "path\to\local\file" ec2-user@your-ec2-public-dns:~/destination/path```
+       ```scp -i "path\to\your-key.pem" "path\to\local\file" ec2-user@your-ec2-public-dns:~/destination/path```
 
-4. Create the directory that will be used to synchronize data with your S3 bucket by using the following command:
-   ```sudo mkdir -p /mnt/nfs/s3```
+5. Create the directory that will be used to synchronize data with your S3 bucket by using the following command:
+6.   ```sudo mkdir -p /mnt/nfs/s3```
 
-5. Mount the file share on the Linux instance by using the command that you located in the Storage Gateway file shares details screen at the end of the last task.
+7. Mount the file share on the Linux instance by using the command that you located in the Storage Gateway file shares details screen at the end of the last task.
    ```sudo mount -t nfs -o nolock,hard <File-Gateway-appliance-private-IP-address>:/share /mnt/nfs/s3```
 
-6. Verify that the share was mounted correctly by entering the following command:
-    ```df -h```
+9. Verify that the share was mounted correctly by entering the following command:
+        ```df -h```
 
-7. Now that you created the mount point, you can copy the data that you want to migrate to Amazon S3 into the share by using this command:
-    ```cp -v /media/data/* /mnt/nfs/s3```
+11. Now that you created the mount point, you can copy the data that you want to migrate to Amazon S3 into the share by using this command:
+        ```cp -v /media/data/* /mnt/nfs/s3```
 
 ## Verifying that the data is migrated
 
