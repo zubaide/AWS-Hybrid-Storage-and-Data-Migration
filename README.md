@@ -21,17 +21,17 @@ This is the network diagram for this project.
 ## Let's create the Primary and secondary S3 buckets
 Before we configure the File Gateway, we must create the primary S3 bucket (or the source) where we will replicate the data. We will also create the secondary bucket (or the destination) that will be used for cross-Region replication.
 
-In the search box to the right of  Services, search for and choose S3 to open the S3 console.
+1. In the search box to the right of  Services, search for and choose S3 to open the S3 console.
 
-Choose Create bucket then configure these settings:
+2. Choose Create bucket then configure these settings:
         Bucket name: Create a name that you can remember easily. It must be globally unique.
         Region: US East (Ohio) us-east-2
         Bucket Versioning: Enable
          _For cross-Region replication, you must enable versioning for both the source and destination buckets._ 
 
-Choose Create bucket
+4. Choose Create bucket
 
-Repeat the previous steps in this task to create a second bucket with the following configuration:
+5. Repeat the previous steps in this task to create a second bucket with the following configuration:
         Bucket name: Create a name you can easily remember. It must be globally unique.
         Region: US West (Oregon) us-west-2
         Versioning: Enable
@@ -42,11 +42,11 @@ Two S3 bucket in different regions
 ## Enabling cross-Region replication
 Now let's crreate a replication policy
 
-Select the name of the source bucket that you created in the US East (Ohio) Region.
+1. Select the name of the source bucket that you created in the US East (Ohio) Region.
 
-Select the Management tab and under Replication rules select **Create replication rule**
+2. Select the Management tab and under Replication rules select **Create replication rule**
 
-Configure the Replication rule:
+3. Configure the Replication rule:
    **Replication rule name**: crr-full-bucket
    **Status** Enabled
    **Source bucket:**
@@ -58,19 +58,17 @@ Configure the Replication rule:
        **IAM role**: S3-CRR-Role 
           **Note**:  To find the AWS Identity and Access Management (IAM) role, in the search box, enter: S3-CRR (This role was pre-created with the required permissions for this lab)
 
-Choose **Save**. When prompted, if you want to replicate existing objects, choose No, and then choose **Submit**
-
+4. Choose **Save**. When prompted, if you want to replicate existing objects, choose No, and then choose **Submit**
 **Note:** there are no objects currently in the bucket, so the answer will have no effect in this case.
 
-Return to and select the link to the bucket you created in the US East (Ohio) Region.
+5. Return to and select the link to the bucket you created in the US East (Ohio) Region.
 
-Choose **Upload** to upload a file from your local computer to the bucket.
+6. Choose **Upload** to upload a file from your local computer to the bucket.
 _For this lab, use a small file that does not contain sensitive information, such as a blank text file._
 
-Choose **Add file**s, locate and open the file, then choose **Upload** 
+7. Choose **Add file**s, locate and open the file, then choose **Upload** 
 
-Wait for the file to upload, then choose **Close**. Return to the bucket you created in the US West (Oregon) Region. 
+8. Wait for the file to upload, then choose **Close**. Return to the bucket you created in the US West (Oregon) Region. 
 
-The file that you uploaded should also now have been copied to this bucket.
-
+9. The file that you uploaded should also now have been copied to this bucket.
 _Note: You may need to refresh  the console for the object to appear._
