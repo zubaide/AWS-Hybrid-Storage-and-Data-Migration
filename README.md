@@ -72,7 +72,12 @@ Now let's crreate a replication policy
 10. The file that you uploaded should also now have been copied to this bucket.
     _Note: You may need to refresh  the console for the object to appear._
 
-![image](https://github.com/user-attachments/assets/4e96c150-0016-4d41-94d5-33b94a3d60a1)
+![image](https://github.com/user-attachments/assets/5dd1949f-afd3-4c46-9b9e-90313ede4484)
+File in primary S3 bucket
+
+![image](https://github.com/user-attachments/assets/c71318e0-a939-45fb-9023-1dfb550df776)
+The same file replicated in secondary bucket
+
 
 ## Configuring the File Gateway and creating an NFS file share
 Next task is to deploy the File Gateway appliance as an Amazon Elastic Compute Cloud (Amazon EC2) instance. We will then configure a cache disk, select an S3 bucket to synchronize your on-premises files to, and select an IAM policy to use. Finally, we will create an NFS file share on the File Gateway.
