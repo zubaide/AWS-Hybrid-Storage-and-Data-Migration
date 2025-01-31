@@ -38,3 +38,39 @@ Repeat the previous steps in this task to create a second bucket with the follow
 
 ![image](https://github.com/user-attachments/assets/27ef28d3-57d9-48af-b26b-4cdf38e243e4)
 Two S3 bucket in different regions
+
+## Enabling cross-Region replication
+Now let's crreate a replication policy
+
+Select the name of the source bucket that you created in the US East (Ohio) Region.
+
+Select the Management tab and under Replication rules select **Create replication rule**
+
+Configure the Replication rule:
+   **Replication rule name**: crr-full-bucket
+   **Status** Enabled
+   **Source bucket:**
+       For **Choose a rule scope**, select  Apply to all objects in the bucket
+   **Destination**:
+       Choose a bucket in this account
+       Choose Browse S3 and select the bucket you created in the US West (Oregon) Region.
+       Select **Choose path**
+       **IAM role**: S3-CRR-Role 
+          **Note**:  To find the AWS Identity and Access Management (IAM) role, in the search box, enter: S3-CRR (This role was pre-created with the required permissions for this lab)
+
+Choose **Save**. When prompted, if you want to replicate existing objects, choose No, and then choose **Submit**
+
+**Note:** there are no objects currently in the bucket, so the answer will have no effect in this case.
+
+Return to and select the link to the bucket you created in the US East (Ohio) Region.
+
+Choose **Upload** to upload a file from your local computer to the bucket.
+_For this lab, use a small file that does not contain sensitive information, such as a blank text file._
+
+Choose **Add file**s, locate and open the file, then choose **Upload** 
+
+Wait for the file to upload, then choose **Close**. Return to the bucket you created in the US West (Oregon) Region. 
+
+The file that you uploaded should also now have been copied to this bucket.
+
+_Note: You may need to refresh  the console for the object to appear._
