@@ -16,6 +16,7 @@ The primary S3 bucket is created in the us-east-2 (Ohio) Region. Data from the L
 The secondary S3 bucket is created in the us-west-2 (Oregon) Region. This secondary bucket is the target for the cross-Region replication policy. It can also be called the destination.
 
 ![image](https://github.com/user-attachments/assets/e5df56d7-4ad4-4a1f-9f8a-59eb26f151af)
+
 This is the network diagram for this project.
 
 ## Let's create the Primary and secondary S3 buckets
